@@ -1,11 +1,13 @@
-def call() {
-    withCredentials([usernamePassword(
-        credentialsId: 'docker-hub-creds',
-        usernameVariable: 'USER',
-        passwordVariable: 'PASS'
-    )]) {
-        sh '''
-            echo $PASS | docker login -u $USER --password-stdin
-        '''
+def call(Map config = [:]) {
+    script {
+        withCredentials([usernamePassword(
+            credentialsId: config.credentialsId,
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+            sh """
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            """
+        }
     }
 }
