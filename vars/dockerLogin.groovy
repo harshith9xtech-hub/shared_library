@@ -4,8 +4,8 @@ def call() {
         usernameVariable: 'USER',
         passwordVariable: 'PASS'
     )]) {
-        sh """
+        sh '''
             echo $PASS | docker login -u $USER --password-stdin
-        """
+        '''
     }
 }
