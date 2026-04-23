@@ -6,6 +6,6 @@ def call() {
         --scanners vuln \
         --severity HIGH,CRITICAL \
         --exit-code 0 \
-        ${DOCKER_IMAGE}:${TAG}
+        ${image}:${tag}
     """
 }
